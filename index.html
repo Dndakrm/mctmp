@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zefty MC</title>
+
+    <!-- Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Nunito (Century Gothic substitute) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
+
+    <!-- Akira Expanded -->
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/akira-expanded">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            z-index: 20;
+        }
+
+        .header-container {
+            width: 90%;
+            max-width: 1400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-left .logo-small {
+            height: 40px;
+        }
+
+        .server-name {
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 400;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        .store-btn {
+            background: #0d6efd;
+            padding: 10px 18px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .store-btn img {
+            height: 22px;
+        }
+
+
+        /* HERO (top section) */
+        .hero {
+            height: 100vh;
+            background: url('https://i.imgur.com/KR4oSRC.png') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);
+            filter: brightness(0.55);
+        }
+
+        .hero-content {
+            position: relative;
+            margin-left: 120px;
+            z-index: 5;
+            max-width: 650px;
+        }
+
+        .title {
+            font-family: 'Akira Expanded', sans-serif;
+            font-size: 60px;
+            text-shadow: 0 8px 25px rgba(0,0,0,0.9);
+        }
+
+        .desc {
+            font-family: 'Century Gothic', 'Nunito', sans-serif;
+            font-size: 20px;
+            line-height: 1.5;
+            margin-top: -8px;
+            text-shadow: 0 5px 18px rgba(0,0,0,0.8);
+        }
+
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 30px;
+            padding: 12px 22px;
+            background: #2b59ff;
+            border-radius: 12px;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.7);
+        }
+
+        .discord-btn img {
+            height: 36px;
+        }
+
+        .big-logo {
+            position: absolute;
+            right: 80px;
+            width: 380px;
+            filter: drop-shadow(0 12px 30px rgba(0,0,0,0.8));
+            z-index: 5;
+        }
+
+
+        /* FOOTER */
+        footer {
+            background: #0b0b0b;
+            padding: 40px 0;
+            margin-top: 80px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-container {
+            width: 90%;
+            max-width: 1400px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #bbbbbb;
+            margin: 0 12px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-address {
+            color: #777;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+
+        <div class="header-left">
+            <img src="https://i.imgur.com/tFNuuEy.png" class="logo-small">
+            <div class="server-name">Zefty MC</div>
+        </div>
+
+        <nav>
+            <a href="#what">What is Zefty MC</a>
+            <a href="#join">How to Join</a>
+            <a href="#rules">Rules</a>
+        </nav>
+
+        <a class="store-btn" href="#">
+            <img src="https://i.imgur.com/vCtNXnq.png">
+            Store
+        </a>
+
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="title">ZEFTY MC</div>
+
+        <div class="desc">
+            Zefty in general are a Gaming Community Platform,<br>
+            where gamers can play together or just hang out.<br>
+            Zefty MC are the Minecraft server made by us to<br>
+            provide a smooth multiplayer experience for you<br>
+            to play with your friends.
+        </div>
+
+        <a href="#" class="discord-btn">
+            <img src="https://i.imgur.com/yUxpW5R.png">
+            JOIN DISCORD
+        </a>
+    </div>
+
+    <img src="https://i.imgur.com/tFNuuEy.png" class="big-logo">
+</section>
+
+<footer>
+    <div class="footer-container">
+
+        <div class="footer-links">
+            <a href="#">Contact</a>
+            <a href="#">About Us</a>
+            <a href="#">Rules</a>
+            <a href="#">Store</a>
+            <a href="#">FAQ</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+
+        <div class="footer-address">
+            Jl. Canggu Gaming No. 404, Denpasar, Bali (optional)
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
