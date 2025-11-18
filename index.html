@@ -33,7 +33,7 @@
             display: flex;
             justify-content: center;
             padding: 20px 0;
-            z-index: 20;
+            z-index: 10; /* header should be above hero overlay */
         }
 
         .header-container {
@@ -42,21 +42,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .header-left .logo-small {
-            height: 40px;
-        }
-
-        .server-name {
-            font-weight: 700;
-            font-size: 24px;
         }
 
         nav a {
@@ -86,26 +71,35 @@
             height: 22px;
         }
 
-
-        /* HERO (top section) */
+        /* HERO (fixed, restored darkness + vignette + crop + layers) */
         .hero {
-            background: url('https://i.imgur.com/KR4oSRC.png') top center / contain no-repeat;
-            background-size: 110%; /* adjust until perfect */
+            height: 100vh;
+            background: url('https://i.imgur.com/KR4oSRC.png') center top / cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 1; /* lowest layer */
         }
 
         .hero::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);
-            filter: brightness(0.55);
+
+            /* Combined darkness + vignette */
+            background:
+                linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85)),
+                radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);
+
+            pointer-events: none;
+            z-index: 2; /* above image, below text */
         }
 
         .hero-content {
             position: relative;
             margin-left: 120px;
-            z-index: 5;
             max-width: 650px;
+            z-index: 3; /* above overlay */
         }
 
         .title {
@@ -146,9 +140,8 @@
             right: 80px;
             width: 380px;
             filter: drop-shadow(0 12px 30px rgba(0,0,0,0.8));
-            z-index: 5;
+            z-index: 3; /* above overlay */
         }
-
 
         /* FOOTER */
         footer {
@@ -185,7 +178,6 @@
             font-size: 14px;
             margin-top: 10px;
         }
-
     </style>
 </head>
 <body>
@@ -193,9 +185,10 @@
 <header>
     <div class="header-container">
 
+        <!-- Clickable server name/logo -->
         <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:white;">
-         <img src="https://i.imgur.com/tFNuuEy.png" style="height:40px;">
-          <div style="font-weight:700;font-size:24px;">Zefty MC</div>
+            <img src="https://i.imgur.com/tFNuuEy.png" style="height:40px;" alt="Zefty Logo">
+            <div style="font-weight:700;font-size:24px;">Zefty MC</div>
         </a>
 
         <nav>
