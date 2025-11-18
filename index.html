@@ -92,7 +92,8 @@
             width: 100%;
             position: relative;
 
-            background: url('https://i.imgur.com/KR4oSRC.png') center 120px / 115% no-repeat;
+            /* KEY LINE: let the browser zoom to fill */
+            background: url('https://i.imgur.com/KR4oSRC.png') center center / cover no-repeat;
 
             display: flex;
             align-items: center;
@@ -268,3 +269,4 @@
 
 </body>
 </html>
+
