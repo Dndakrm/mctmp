@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zefty MC</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/tFNuuEy.png">
+
     <!-- Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Nunito (Century Gothic-like) -->
+    <!-- Nunito (Century Gothic substitute) -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
 
     <!-- Akira Expanded -->
@@ -19,7 +23,7 @@
             margin: 0;
             padding: 0;
             background: #000;
-            color: #fff;
+            color: white;
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
         }
@@ -31,6 +35,9 @@
             padding: 18px 0;
             display: flex;
             justify-content: center;
+            position: fixed;
+            top: 0;
+            z-index: 50;
         }
 
         .header-container {
@@ -61,12 +68,12 @@
         nav a {
             margin: 0 15px;
             text-decoration: none;
-            color: #ffffff;
+            color: white;
             font-weight: 400;
         }
 
         nav a:hover {
-            opacity: 0.8;
+            opacity: 0.75;
         }
 
         .store-btn {
@@ -76,7 +83,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #fff;
+            color: white;
             text-decoration: none;
             font-weight: 700;
         }
@@ -85,17 +92,48 @@
             height: 22px;
         }
 
+        /* BURGER (mobile only) */
+        .burger {
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+            display: none;
+            user-select: none;
+        }
+
+        /* MOBILE DROPDOWN MENU */
+        .nav-mobile {
+            display: none;
+            flex-direction: column;
+            background: #031820;
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .nav-mobile a {
+            padding: 12px 0;
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-mobile a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
         /* HERO SECTION */
         .hero {
             width: 100%;
             position: relative;
+            margin-top: 100px; /* push content below fixed header */
         }
 
         .hero img.bg-image {
             width: 100%;
             height: auto;
             display: block;
-            object-fit: contain; /* never crop */
         }
 
         /* Overlay */
@@ -104,15 +142,15 @@
             position: absolute;
             inset: 0;
             background:
-                rgba(0,0,0,0.45),
+                rgba(0, 0, 0, 0.45),
                 radial-gradient(circle at center,
-                    rgba(0,0,0,0) 55%,
-                    rgba(0,0,0,0.75) 100%);
-            pointer-events: none;
+                    rgba(0, 0, 0, 0) 55%,
+                    rgba(0, 0, 0, 0.75) 100%);
             z-index: 2;
+            pointer-events: none;
         }
 
-        /* CONTENT ON TOP OF IMAGE */
+        /* HERO CONTENT */
         .hero-content {
             position: absolute;
             top: 140px;
@@ -124,17 +162,16 @@
         .title {
             font-family: 'Akira Expanded', sans-serif;
             font-size: 70px;
-            font-weight: bold;
             margin: 0;
-            text-shadow: 0 10px 40px rgba(0,0,0,0.9);
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
         }
 
         .desc {
-            font-family: 'Century Gothic', 'Nunito', sans-serif;
+            font-family: 'Nunito', sans-serif;
             font-size: 20px;
+            margin-top: 12px;
             line-height: 1.55;
-            margin-top: 10px;
-            text-shadow: 0 5px 25px rgba(0,0,0,0.85);
+            text-shadow: 0 5px 25px rgba(0, 0, 0, 0.85);
         }
 
         .discord-btn {
@@ -149,7 +186,6 @@
             text-decoration: none;
             font-size: 20px;
             font-weight: 700;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.7);
         }
 
         .discord-btn img {
@@ -160,7 +196,7 @@
         .big-logo {
             position: absolute;
             right: 80px;
-            top: 50px;  /* instead of bottom: 90px */
+            top: 80px;
             width: 420px;
             z-index: 3;
         }
@@ -174,9 +210,9 @@
         }
 
         .footer-container {
+            text-align: center;
             width: 90%;
             max-width: 1400px;
-            text-align: center;
         }
 
         .footer-links a {
@@ -187,47 +223,94 @@
         }
 
         .footer-links a:hover {
-            color: #ffffff;
+            color: white;
         }
 
-        .footer-address {
-            color: #777;
-            font-size: 14px;
-            margin-top: 10px;
+        /* ---------- RESPONSIVE ---------- */
+
+        @media (max-width: 768px) {
+
+            .nav-desktop {
+                display: none;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .hero-content {
+                top: 40px;
+                left: 50%;
+                transform: translateX(-50%);
+                max-width: 90%;
+                text-align: center;
+            }
+
+            .title {
+                font-size: 46px;
+            }
+
+            .desc {
+                font-size: 17px;
+            }
+
+            .big-logo {
+                position: relative;
+                margin-top: 220px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 260px;
+            }
+
+            .discord-btn {
+                padding: 12px 20px;
+                font-size: 18px;
+            }
+
+            .hero img.bg-image {
+                object-fit: cover;
+                height: 600px;
+            }
         }
     </style>
 </head>
+
 <body>
 
 <header>
     <div class="header-container">
+
         <a href="index.html" class="header-left">
-            <img src="https://i.imgur.com/tFNuuEy.png" alt="Logo">
+            <img src="https://i.imgur.com/tFNuuEy.png">
             <div class="server-name">Zefty MC</div>
         </a>
 
-        <nav>
+        <nav class="nav-desktop">
             <a href="about.html">What is Zefty MC</a>
             <a href="join.html">How to join</a>
             <a href="rules.html">Rules</a>
         </nav>
 
+        <div class="burger" onclick="toggleMenu()">☰</div>
+
         <a class="store-btn" href="store.html">
-            <img src="https://i.imgur.com/vCtNXnq.png">
-            Store
+            <img src="https://i.imgur.com/vCtNXnq.png"> Store
         </a>
     </div>
 </header>
 
-<section class="hero">
+<nav class="nav-mobile" id="mobileMenu">
+    <a href="about.html">What is Zefty MC</a>
+    <a href="join.html">How to join</a>
+    <a href="rules.html">Rules</a>
+    <a href="store.html">Store</a>
+</nav>
 
-    <!-- FULL IMAGE (no cropping) -->
+<section class="hero">
     <img src="https://i.imgur.com/OvZHEEM.png" class="bg-image">
 
-    <!-- TEXT ON IMAGE -->
     <div class="hero-content">
         <div class="title">ZEFTY MC</div>
-
         <div class="desc">
             Zefty in general are a Gaming Community Platform,<br>
             where gamers can play together or just hang out.<br>
@@ -237,12 +320,10 @@
         </div>
 
         <a href="#" class="discord-btn">
-            <img src="https://i.imgur.com/yUxpW5R.png">
-            JOIN DISCORD
+            <img src="https://i.imgur.com/yUxpW5R.png"> JOIN DISCORD
         </a>
     </div>
 
-    <!-- RIGHT BIG LOGO -->
     <img src="https://i.imgur.com/tFNuuEy.png" class="big-logo">
 </section>
 
@@ -263,12 +344,12 @@
     </div>
 </footer>
 
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById("mobileMenu");
+        menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
