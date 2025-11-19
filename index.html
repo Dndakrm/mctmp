@@ -1,355 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zefty MC</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://i.imgur.com/tFNuuEy.png">
-
-    <!-- Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Nunito (Century Gothic substitute) -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
-
-    <!-- Akira Expanded -->
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/akira-expanded">
-
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #000;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* HEADER */
-        header {
-            width: 100%;
-            background: #031820;
-            padding: 18px 0;
-            display: flex;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            z-index: 50;
-        }
-
-        .header-container {
-            width: 90%;
-            max-width: 1400px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: white;
-        }
-
-        .header-left img {
-            height: 40px;
-        }
-
-        .server-name {
-            font-weight: 700;
-            font-size: 24px;
-        }
-
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: white;
-            font-weight: 400;
-        }
-
-        nav a:hover {
-            opacity: 0.75;
-        }
-
-        .store-btn {
-            background: #0d6efd;
-            padding: 10px 18px;
-            border-radius: 999px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .store-btn img {
-            height: 22px;
-        }
-
-        /* BURGER (mobile only) */
-        .burger {
-            font-size: 30px;
-            cursor: pointer;
-            color: white;
-            display: none;
-            user-select: none;
-        }
-
-        /* MOBILE DROPDOWN MENU */
-        .nav-mobile {
-            display: none;
-            flex-direction: column;
-            background: #031820;
-            width: 100%;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .nav-mobile a {
-            padding: 12px 0;
-            display: block;
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        .nav-mobile a:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* HERO SECTION */
-        .hero {
-            width: 100%;
-            position: relative;
-            margin-top: 100px; /* push content below fixed header */
-        }
-
-        .hero img.bg-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Overlay */
-        .hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                rgba(0, 0, 0, 0.45),
-                radial-gradient(circle at center,
-                    rgba(0, 0, 0, 0) 55%,
-                    rgba(0, 0, 0, 0.75) 100%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        /* HERO CONTENT */
-        .hero-content {
-            position: absolute;
-            top: 140px;
-            left: 80px;
-            z-index: 3;
-            max-width: 650px;
-        }
-
-        .title {
-            font-family: 'Akira Expanded', sans-serif;
-            font-size: 70px;
-            margin: 0;
-            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
-        }
-
-        .desc {
-            font-family: 'Nunito', sans-serif;
-            font-size: 20px;
-            margin-top: 12px;
-            line-height: 1.55;
-            text-shadow: 0 5px 25px rgba(0, 0, 0, 0.85);
-        }
-
-        .discord-btn {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 30px;
-            padding: 14px 26px;
-            background: #2b59ff;
-            border-radius: 16px;
-            gap: 12px;
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .discord-btn img {
-            height: 36px;
-        }
-
-        /* RIGHT BIG LOGO */
-        .big-logo {
-            position: absolute;
-            right: 80px;
-            top: 80px;
-            width: 420px;
-            z-index: 3;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #0b0b0b;
-            padding: 40px 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .footer-container {
-            text-align: center;
-            width: 90%;
-            max-width: 1400px;
-        }
-
-        .footer-links a {
-            color: #bbbbbb;
-            margin: 0 12px;
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        /* ---------- RESPONSIVE ---------- */
-
-        @media (max-width: 768px) {
-
-            .nav-desktop {
-                display: none;
-            }
-
-            .burger {
-                display: block;
-            }
-
-            .hero-content {
-                top: 40px;
-                left: 50%;
-                transform: translateX(-50%);
-                max-width: 90%;
-                text-align: center;
-            }
-
-            .title {
-                font-size: 46px;
-            }
-
-            .desc {
-                font-size: 17px;
-            }
-
-            .big-logo {
-                position: relative;
-                margin-top: 220px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 260px;
-            }
-
-            .discord-btn {
-                padding: 12px 20px;
-                font-size: 18px;
-            }
-
-            .hero img.bg-image {
-                object-fit: cover;
-                height: 600px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-<header>
-    <div class="header-container">
-
-        <a href="index.html" class="header-left">
-            <img src="https://i.imgur.com/tFNuuEy.png">
-            <div class="server-name">Zefty MC</div>
-        </a>
-
-        <nav class="nav-desktop">
-            <a href="about.html">What is Zefty MC</a>
-            <a href="join.html">How to join</a>
-            <a href="rules.html">Rules</a>
-        </nav>
-
-        <div class="burger" onclick="toggleMenu()">☰</div>
-
-        <a class="store-btn" href="store.html">
-            <img src="https://i.imgur.com/vCtNXnq.png"> Store
-        </a>
-    </div>
-</header>
-
-<nav class="nav-mobile" id="mobileMenu">
-    <a href="about.html">What is Zefty MC</a>
-    <a href="join.html">How to join</a>
-    <a href="rules.html">Rules</a>
-    <a href="store.html">Store</a>
-</nav>
-
-<section class="hero">
-    <img src="https://i.imgur.com/OvZHEEM.png" class="bg-image">
-
-    <div class="hero-content">
-        <div class="title">ZEFTY MC</div>
-        <div class="desc">
-            Zefty in general are a Gaming Community Platform,<br>
-            where gamers can play together or just hang out.<br>
-            Zefty MC are the Minecraft server made by us to<br>
-            provide a smooth multiplayer experience for you<br>
-            to play with your friends.
-        </div>
-
-        <a href="#" class="discord-btn">
-            <img src="https://i.imgur.com/yUxpW5R.png"> JOIN DISCORD
-        </a>
-    </div>
-
-    <img src="https://i.imgur.com/tFNuuEy.png" class="big-logo">
-</section>
-
-<footer>
-    <div class="footer-container">
-        <div class="footer-links">
-            <a href="contact.html">Contact</a>
-            <a href="about.html">About Us</a>
-            <a href="rules.html">Rules</a>
-            <a href="store.html">Store</a>
-            <a href="faq.html">FAQ</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="tos.html">Terms of Service</a>
-        </div>
-        <div class="footer-address">
-            Gaming Center 404, Somewhere, Earth (optional)
-        </div>
-    </div>
-</footer>
-
-<script>
-    function toggleMenu() {
-        const menu = document.getElementById("mobileMenu");
-        menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zefty MC</title>
+  <link rel="icon" type="image/png" href="https://i.imgur.com/tFNuuEy.png" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: url('https://i.imgur.com/KR4oSRC.png') center/cover no-repeat fixed;
     }
-</script>
+    .overlay {
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body class="text-white font-sans">
+  <!-- Navbar -->
+  <nav class="overlay fixed top-0 left-0 w-full z-50 py-4 shadow-lg">
+    <div class="container mx-auto flex justify-between items-center px-4">
+      <a href="index.html" class="flex items-center space-x-3"><img src="https://i.imgur.com/tFNuuEy.png" class="h-10 w-10 rounded-md"><span class="text-2xl font-bold">Zefty MC</span></a>
+      <ul class="hidden md:flex space-x-6 text-lg items-center">
+        <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+        <li><a href="store.html" class="hover:text-yellow-400">Store</a></li>
+        <li><a href="howtojoin.html" class="hover:text-yellow-400">Join</a></li>
+        <li><a href="about.html" class="hover:text-yellow-400">About</a></li>
+        <li><a href="contact.html" class="hover:text-yellow-400">Contact</a></li>
+        <li><a href="https://discord.gg/kkEGgSgaEC" class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg">Discord</a></li></ul>
+    </div>
+        <button id="menuBtn" class="md:hidden bg-gray-800 bg-opacity-60 px-3 py-2 rounded-lg ml-auto">☰</button>
+    </div>
+    <ul id="mobileMenu" class="md:hidden flex flex-col space-y-4 text-lg bg-black bg-opacity-70 p-6 hidden">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="store.html">Store</a></li>
+      <li><a href="howtojoin.html">Join</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://discord.gg/kkEGgSgaEC" class="bg-indigo-500 px-3 py-2 rounded-lg">Discord</a></li>
+    </ul>
+  </nav>
 
+  <!-- Hero Section -->
+  <section class="h-screen flex items-center justify-center overlay text-center px-4">
+    <div>
+      <h1 class="text-5xl font-extrabold mb-4">Welcome to Zefty MC</h1>
+      <p class="text-xl mb-6">The ultimate Minecraft experience. Survive, create, and conquer.</p>
+      <div class="space-x-4">
+        <a href="store.html" class="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-lg font-semibold">Visit Store</a>
+        <a href="howtojoin.html" class="bg-white hover:bg-gray-200 text-black px-6 py-3 rounded-lg font-semibold">Join Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Cards -->
+  <section class="py-20 overlay">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="bg-gray-800 bg-opacity-60 p-6 rounded-xl shadow-xl text-center">
+        <h2 class="text-2xl font-bold mb-2">Store</h2>
+        <p class="mb-4">Grab ranks, items, and exclusive perks.</p>
+        <a href="store.html" class="text-yellow-400">Open Store →</a>
+      </div>
+
+      <div class="bg-gray-800 bg-opacity-60 p-6 rounded-xl shadow-xl text-center">
+        <h2 class="text-2xl font-bold mb-2">Rules</h2>
+        <p class="mb-4">Make sure to follow the server guidelines.</p>
+        <a href="rules.html" class="text-yellow-400">View Rules →</a>
+      </div>
+
+      <div class="bg-gray-800 bg-opacity-60 p-6 rounded-xl shadow-xl text-center">
+        <h2 class="text-2xl font-bold mb-2">FAQ</h2>
+        <p class="mb-4">Got questions? We got you.</p>
+        <a href="faq.html" class="text-yellow-400">Read FAQ →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="overlay py-10 text-center text-gray-300">
+    <div class="space-x-4 mb-4">
+      <a href="tos.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="rules.html">Rules</a>
+    </div>
+    <p>© 2025 Zefty MC. All rights reserved.</p>
+  </footer>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
